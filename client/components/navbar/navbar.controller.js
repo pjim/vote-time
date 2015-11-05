@@ -4,8 +4,15 @@ angular.module('voteTimeApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
       'title': 'Home',
-      'link': '/'
-    }];
+      'link': '/',
+      'show':'true'
+    },
+    {
+      'title':'User Dash',
+      'link':'/User-dash',
+      'show':'Auth.isLoggedIn'
+    }
+  ];
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
