@@ -6,8 +6,8 @@ angular.module('voteTimeApp')
       //send the poll form to the server for saving
       $scope.addPoll = function(){
            var optionSendArray = [];
-           $scope.options.forEach(function(opt){
-                optionSendArray.push($scope.opt);
+           $scope.options.forEach(function(option){
+                optionSendArray.push(option);
            });
            console.log(optionSendArray);
            var pollQuestion = $scope.pollQuestion;
@@ -35,5 +35,9 @@ angular.module('voteTimeApp')
         }else{
           alert('You must have at least two options in your poll');
         }
+      };
+
+      $scope.test = function(){
+          console.log($scope.options) ;
       };
   });
