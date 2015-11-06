@@ -2,7 +2,6 @@ div(ng-include='"components/navbar/navbar.html"')
 .container
   .col-md-12
    p Welcome to your dashboard
-   .display(ng-switch o n="polls")
      button(ng-click='showPollForm()') New Poll
 
      button(ng-click='showUsersPolls()') View Polls
@@ -21,5 +20,6 @@ div(ng-include='"components/navbar/navbar.html"')
 
            button(ng-click="test()") test
 
-       .view-polls(ng-switch-when="show")
+       .view-polls(ng-show="viewPoll")
           p this is the view polls section
+          h1 polls go here

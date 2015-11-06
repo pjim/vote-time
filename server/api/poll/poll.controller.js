@@ -55,6 +55,15 @@ exports.destroy = function(req, res) {
   });
 };
 
+//Returns all a specific users Polls
+exports.usersPolls = function(req,res){
+  var user = req.params.user;
+  Poll.find({owner:user}, function(err,polls){
+    if(err){return handleError(res,err);}
+     return res.json(polls);
+  });
+}
+
 function handleError(res, err) {
   return res.status(500).send(err);
 }

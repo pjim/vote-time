@@ -3,6 +3,14 @@
 angular.module('voteTimeApp')
   .controller('UserDashCtrl', function ($scope,$http,Auth) {
 
+      function getUsersPolls(){
+        $http.get('api/polls/all/' + Auth.getCurrentUser().name ).success(function(resp){
+            console.log(resp);
+            $scope.thisUsersPolls = resp;
+        });
+      }
+
+      getUsersPolls();
       $scope.newPoll = false;
 
       $scope.showPollForm = function(){
@@ -54,5 +62,8 @@ angular.module('voteTimeApp')
 
       $scope.test = function(){
           console.log($scope.options) ;
+          console.log($scope.thisUsersPolls);
       };
+
+
   });
