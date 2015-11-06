@@ -1,22 +1,33 @@
 'use strict';
 
 angular.module('voteTimeApp')
-  .controller('UserDashCtrl', function ($scope) {
-  //    $scope.addPoll = function(){
-        //  for(option in options,function(){
-            //turn a variable number of options into an array for sending
-        //  });
-        //  $http.post('api/polls/', {question:pollQuestion,options:[optionArray]})
-      //}
+  .controller('UserDashCtrl', function ($scope,$http) {
+
+      //send the poll form to the server for saving
+      $scope.addPoll = function(){
+           var optionSendArray = [];
+           $scope.options.forEach(function(opt){
+                optionSendArray.push($scope.opt);
+           });
+           console.log(optionSendArray);
+           var pollQuestion = $scope.pollQuestion;
+
+         $http.post('api/polls/', {question:pollQuestion,options:[optionSendArray]});
+      };
+
       $scope.options = [
-        'option1',
-        'option2'
+        {opt:'option1'},
+        {opt:'option2'},
       ];
+
+     //add option boxes to the poll entry page
       $scope.addOption = function(event){
         event.preventDefault();
         var optNum = $scope.options.length +1;
-        $scope.options.push('option' + optNum);
+        $scope.options.push({opt:'option' + optNum});
       };
+
+    //delete option boxes
       $scope.removeOption = function(event){
         event.preventDefault();
         if($scope.options.length > 2){

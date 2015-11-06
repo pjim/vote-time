@@ -13,7 +13,6 @@ angular.module('voteTimeApp')
       'show':'isLoggedIn'
     }
   ];
-    console.log(Auth.isLoggedIn);
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
