@@ -1,7 +1,22 @@
 'use strict';
 
 angular.module('voteTimeApp')
-  .controller('UserDashCtrl', function ($scope,$http) {
+  .controller('UserDashCtrl', function ($scope,$http,Auth) {
+
+      $scope.newPoll = false;
+
+      $scope.showPollForm = function(){
+
+        if($scope.newPoll === false){$scope.newPoll = true;}
+        else{$scope.newPoll = false;}
+      };
+
+      $scope.viewPoll = false;
+
+      $scope.showUsersPolls = function(){
+        if($scope.viewPoll === false){$scope.viewPoll= true;}
+        else{$scope.viewPoll = false;}
+      };
 
       //send the poll form to the server for saving
       $scope.addPoll = function(){
@@ -11,8 +26,8 @@ angular.module('voteTimeApp')
            });
            console.log(optionSendArray);
            var pollQuestion = $scope.pollQuestion;
-
-         $http.post('api/polls/', {question:pollQuestion,options:optionSendArray});
+          var userName = Auth.getCurrentUser().name ;
+         $http.post('api/polls/', {question:pollQuestion,options:optionSendArray,owner:userName});
       };
 
       $scope.options = [
