@@ -1,12 +1,14 @@
 div(ng-include='"components/navbar/navbar.html"')
 .container
   .col-md-12
-      form(ng-sumbit="addPoll($event)")
+      form(ng-sumbit="addPoll($event)" class="form")
         label Poll name
-        input(type="text",placeholder="Add your poll title")
+        input(type="text",placeholder="Add your poll title" class="form-control")
         label Options
-        input(type="text", placeholder="option 1")
-        input(type="text", placeholder="option 2")
+        input(ng-repeat="option in options" type="text", placeholder="{{option}}" class="form-control")
 
-        button Add another option
-        button Submit
+        button(class="btn" ng-click="addOption($event)") Add another option
+
+        button(class="btn" ng-click="removeOption($event)") Remove an option
+
+        button(class="btn") Submit
