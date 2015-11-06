@@ -22,6 +22,7 @@ exports.show = function(req, res) {
 
 // Creates a new poll in the DB.
 exports.create = function(req, res) {
+  console.log(req.body);
   Poll.create(req.body, function(err, poll) {
     if(err) { return handleError(res, err); }
     return res.status(201).json(poll);

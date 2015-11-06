@@ -1,6 +1,7 @@
 div(ng-include='"components/navbar/navbar.html"')
 .container
   .col-md-12
+   p Welcome to your dashboard
       form(ng-submit="addPoll($event)" class="form")
         label Poll Question
         input(type="text",placeholder="Add your poll question" ng-model="pollQuestion" class="form-control")

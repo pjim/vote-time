@@ -7,12 +7,12 @@ angular.module('voteTimeApp')
       $scope.addPoll = function(){
            var optionSendArray = [];
            $scope.options.forEach(function(option){
-                optionSendArray.push(option);
+                optionSendArray.push({optionName:option.opt,votes:0});
            });
            console.log(optionSendArray);
            var pollQuestion = $scope.pollQuestion;
 
-         $http.post('api/polls/', {question:pollQuestion,options:[optionSendArray]});
+         $http.post('api/polls/', {question:pollQuestion,options:optionSendArray});
       };
 
       $scope.options = [
