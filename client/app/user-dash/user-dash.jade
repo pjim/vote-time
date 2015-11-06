@@ -1,15 +1,11 @@
 .container
   .col-md-12
-      | This is the user-dash view.
+      form(ng-sumbit="addPoll($event)")
+        label Poll name
+        input(type="text",placeholder="Add your poll title")
+        label Options
+        input(type="text", placeholder="option 1")
+        input(type="text", placeholder="option 2")
 
-  form (ng-sumbit($event))
-    label Poll name
-    input(type="text",placeholder="Add your poll title")
-    label Options
-    input(type="text", placeholder="option 1")
-    input(type="text", placeholder="option 2")
-
-    button Add another option
-    button Submit
-
-  
+        button Add another option
+        button Submit

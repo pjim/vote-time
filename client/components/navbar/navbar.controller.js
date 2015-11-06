@@ -9,11 +9,11 @@ angular.module('voteTimeApp')
     },
     {
       'title':'User Dash',
-      'link':'/User-dash',
-      'show':'Auth.isLoggedIn'
+      'link':'/user-dash',
+      'show':'isLoggedIn'
     }
   ];
-
+    console.log(Auth.isLoggedIn);
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;

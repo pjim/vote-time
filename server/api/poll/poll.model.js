@@ -2,11 +2,15 @@
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
-
+var PollOptionSchema = new Schema({
+    optionName:String,
+    votes:Number
+});
 var PollSchema = new Schema({
-  name: String,
-  info: String,
-  active: Boolean
+  question: String,
+  owner:String,
+  options:[PollOptionSchema]
+  
 });
 
 module.exports = mongoose.model('Poll', PollSchema);
