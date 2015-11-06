@@ -23,3 +23,4 @@ div(ng-include='"components/navbar/navbar.html"')
        .view-polls(ng-show="viewPoll")
           p this is the view polls section
           h1 polls go here
+          p(ng-repeat="poll in thisUsersPolls") {{poll.question}}
