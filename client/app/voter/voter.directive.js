@@ -6,7 +6,10 @@ angular.module('voteTimeApp')
       templateUrl: 'app/voter/voter.html',
       restrict: 'EA',
       scope:{
-        data:'='  
+        poll:'='
+      },
+      controller:function($scope,$http){
+
       },
       link: function (scope, element, attrs) {
       }

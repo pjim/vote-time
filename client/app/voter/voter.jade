@@ -1,9 +1,8 @@
 div this is the voter directive
-  h3  {{data.question}}
+  h3  {{poll.question}}
   div(class="list-group")
-  ul
-    li(ng-repeat="option in data.options")
-      label {{option.optionName}}
-       input(type="checkbox" id='')
+    form
+       label(ng-repeat="option in poll.options") {{option.optionName}}
+         input(type="radio" id='' ng-value="option.optionName" name="option")
 
   button(ng-class="btn") Send Vote

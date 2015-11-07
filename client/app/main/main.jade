@@ -12,8 +12,10 @@ header#banner.hero-unit
     .col-md-12
       h2 Polls will appear here for non registered users to vote on
       h2 when they have voted the poll will change to a chart
+  .row
+    div(class="col-md-6 col-md-offset-4")
       button(class="btn" ng-click="showPolls()") See our latest polls
       div(ng-repeat="poll in polls" ng-show="seePolls")
-        voter(data="poll")
+        voter(poll="poll")
 footer.footer
   .container
