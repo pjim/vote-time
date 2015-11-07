@@ -1,6 +1,9 @@
 div this is the voter directive
-ul
-  li(ng-repeat="option in option")
-     input(type="checkbox")
+  h3 question title
+  div(class="list-group")
+  ul
+    li(ng-repeat="option in options")
+      label()
+       input(type="checkbox" id='')
 
-button(ng-click="addOption()") Add Option
+  button(ng-class="btn") Send Vote 

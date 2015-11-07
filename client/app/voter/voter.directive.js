@@ -9,3 +9,9 @@ angular.module('voteTimeApp')
       }
     };
   });
+
+
+  //directive should take teh poll options and place them in a list group with checkboxes
+  //it should show the poll title 
+  //it should then post to the server when a vote goes though
+  //then it dissaplears or switches to a chart display
