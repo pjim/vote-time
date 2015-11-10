@@ -27,6 +27,7 @@ angular.module('voteTimeApp')
               chartObject.xAxis.title = {text:'Poll Options'};
               chartObject.yAxis = {};
               chartObject.yAxis.title = {text:'Votes'};
+              chartObject.yAxis.minTickInterval = 1;
               chartObject.series = [{data:[]}];
               chartObject.series[0].name = 'Number of Votes';
               chartObject.title = {text:value.question};
