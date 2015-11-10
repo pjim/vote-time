@@ -30,6 +30,7 @@ exports.create = function(req, res) {
 };
 
 // Updates an existing poll in the DB.
+// probably should amend this so it's its own route for added votes: more clarity
 exports.update = function(req, res) {
   console.log('call to update made')
   if(req.body._id) { delete req.body._id; }
@@ -41,6 +42,7 @@ exports.update = function(req, res) {
           val.votes ++
         }
     });
+    poll.voted.push(req.body.votingUser);
     poll.save(function (err) {
       if (err) { return handleError(res, err); }
       console.log('updated poll saved');

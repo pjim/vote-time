@@ -9,8 +9,9 @@ var PollOptionSchema = new Schema({
 var PollSchema = new Schema({
   question: String,
   owner:String,
-  options:[PollOptionSchema]
-  
+  options:[PollOptionSchema],
+  voted:[]
+
 });
 
 module.exports = mongoose.model('Poll', PollSchema);
