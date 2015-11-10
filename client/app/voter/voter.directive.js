@@ -9,9 +9,12 @@ angular.module('voteTimeApp')
         poll:'='
       },
       controller:function($scope,$http,Auth){
-          $scope.vote = {selectedOption:'no option selected'};
-          $scope.sendOption = function(){console.log($scope.vote.selectedOption);};
-
+          $scope.vote = {
+              selectedOption:'no option selected',
+          };
+          $scope.sendOption = function(){
+            $http.put('api/polls/' + $scope.poll._id, {optionName:$scope.vote.selectedOption});
+          };
           //must check if user has voted on this poll if so ng-hide the poll and display the result
 
           //must show the result as a chart after vote is cast
