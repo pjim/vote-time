@@ -31,13 +31,19 @@ exports.create = function(req, res) {
 
 // Updates an existing poll in the DB.
 exports.update = function(req, res) {
+  console.log('call to update made')
   if(req.body._id) { delete req.body._id; }
   Poll.findById(req.params.id, function (err, poll) {
     if (err) { return handleError(res, err); }
     if(!poll) { return res.status(404).send('Not Found'); }
-    var updated = _.merge(poll, req.body);
-    updated.save(function (err) {
+    poll.options.forEach(function(val){
+        if(val.optionName === req.body.optionName){
+          val.votes ++
+        }
+    });
+    poll.save(function (err) {
       if (err) { return handleError(res, err); }
+      console.log('updated poll saved');
       return res.status(200).json(poll);
     });
   });
