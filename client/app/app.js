@@ -6,7 +6,7 @@ angular.module('voteTimeApp', [
   'ngSanitize',
   'ngRoute',
   'ui.bootstrap',
-  'chart.js'
+  'highcharts-ng'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider

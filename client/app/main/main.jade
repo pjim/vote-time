@@ -20,7 +20,10 @@ header#banner.hero-unit
   .row
     div(class="col-md-6 col-md-offset-4")
       button(class="btn", ng-click="showResults()") Show Poll Results
-      div(ng-show="seeResults")
+      highchart(config="testChart")
+
+      div(ng-show="seeResults" ng-repeat="data in chartData")
+        highchart(config="data")
         p here you will see the poll results for all polls and users
 footer.footer
   .container
