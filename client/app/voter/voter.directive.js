@@ -8,7 +8,7 @@ angular.module('voteTimeApp')
       scope:{
         poll:'='
       },
-      controller:function($scope,$http,Auth){
+      controller:function($scope,$http,Auth,$timeout){
           $scope.thisUserCanVote = true;
           $scope.vote = {
               selectedOption:'no option selected',
@@ -19,29 +19,31 @@ angular.module('voteTimeApp')
                   optionName:$scope.vote.selectedOption,
                   votingUser:Auth.getCurrentUser().name}
                 );
-                checkUserVoted();
+                //checkUserVoted();
             }
          };
-
           function checkUserVoted(){
              var userName = Auth.getCurrentUser().name;
+              console.log(userName);
               var currentPoll;
-              $http.get('api/polls/', $scope.poll._id).then(function(response){
+              console.log($scope.poll._id);
+              $http.get('api/polls/' + $scope.poll._id).then(function(response){
                 currentPoll = response;
               });
               currentPoll.voted.forEach(function(value){
                   if(value === userName){$scope.thisUserCanVote = false;}
               });
           }
-          checkUserVoted();
+          $timeout(checkUserVoted,100);
           //must check if user has voted on this poll if so ng-hide the poll and display the result
-          // so if has voted or cookie has voted show chart
+          // so if has voted show chart
           //must show the result as a chart after vote is cast
 
-          //sets a cookie to prevent reloading and revoting
       },
       link: function (scope, element, attrs) {
+
       }
+
     };
   });
 

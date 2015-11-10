@@ -1,10 +1,15 @@
 'use strict';
 
 angular.module('voteTimeApp')
-  .controller('MainCtrl', function ($scope, $http) {
-     $scope.polls = $http.get('api/polls').success(function(resp){
+  .controller('MainCtrl', function ($scope, $http,Auth) {
+    $scope.polls =  [];
+     $http.get('api/polls').success(function(resp){
        console.log(resp);
-       $scope.polls = resp;
+       resp.forEach(function(value){
+        if(value.voted.indexOf(Auth.getCurrentUser().name)  === -1){
+            $scope.polls.push(value);
+        }
+       });
 
      });
      $scope.seePolls = false;
@@ -16,4 +21,15 @@ angular.module('voteTimeApp')
          $scope.seePolls = true;
        }
      };
+
+     $scope.seeResults = false;
+
+     $scope.showResults = function(){
+       if($scope.seeResults){
+         $scope.seeResults = false;
+       }else{
+         $scope.seeResults = true;
+       }
+     };
+
   });
