@@ -22,9 +22,13 @@ angular.module('voteTimeApp')
               var chartObject = {};
               chartObject.options = {};
               chartObject.options.chart = {type:'column'};
-              chartObject.xAxis = {};
+              chartObject.xAxis = {}  ;
               chartObject.xAxis.categories = [];
+              chartObject.xAxis.title = {text:'Poll Options'};
+              chartObject.yAxis = {};
+              chartObject.yAxis.title = {text:'Votes'};
               chartObject.series = [{data:[]}];
+              chartObject.series[0].name = 'Number of Votes';
               chartObject.title = {text:value.question};
               value.options.forEach(function(option){
                  chartObject.xAxis.categories.push(option.optionName);
