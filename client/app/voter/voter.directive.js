@@ -9,8 +9,8 @@ angular.module('voteTimeApp')
         poll:'='
       },
       controller:function($scope,$http,Auth){
-          $scope.selectedOption = 'no option selected';
-          $scope.sendOption = function(){console.log($scope.selectedOption);};
+          $scope.vote = {selectedOption:'no option selected'};
+          $scope.sendOption = function(){console.log($scope.vote.selectedOption);};
 
           //must check if user has voted on this poll if so ng-hide the poll and display the result
 
