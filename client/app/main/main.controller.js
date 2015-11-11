@@ -35,8 +35,6 @@ angular.module('voteTimeApp')
     //           $scope.chartData.push(chartObject);
     //         }
     //     });
-     console.log('this is chart data below');
-      console.log($scope.chartData);
 
   //   });
      $scope.seePolls = false;

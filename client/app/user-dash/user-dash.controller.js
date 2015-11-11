@@ -67,6 +67,9 @@ angular.module('voteTimeApp')
             {opt:'option2'},
           ];
 
-      $scope.deletePoll = poll => console.log(poll);
+      $scope.deletePoll = poll => {
+        var pollId = poll._id;
+        $http.delete(`api/polls/${pollId}`);
+      };
 
   });
