@@ -1,16 +1,20 @@
 'use strict';
 
 angular.module('voteTimeApp')
-  .controller('UserDashCtrl', function ($scope,$http,Auth) {
+  .controller('UserDashCtrl', function ($scope,$http,Auth,pollGetter) {
 
-      function getUsersPolls(){
-        $http.get('api/polls/all/' + Auth.getCurrentUser().name ).success(function(resp){
-            console.log(resp);
-            $scope.thisUsersPolls = resp;
-        });
-      }
+      // function getUsersPolls(){
+      //   $http.get('api/polls/all/' + Auth.getCurrentUser().name ).success(function(resp){
+      //       console.log(resp);
+      //       $scope.thisUsersPolls = resp;
+      //   });
+      // }
+      //
+      // getUsersPolls();
+      //
 
-      getUsersPolls();
+      $scope.thisUsersPolls = pollGetter.getUnvotedPolls();
+
       $scope.newPoll = false;
 
       $scope.showPollForm = function(){
