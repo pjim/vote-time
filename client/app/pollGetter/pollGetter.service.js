@@ -8,10 +8,10 @@ angular.module('voteTimeApp')
 
     // Public API here
     return {
-      //returns an array of poll data for the voter directive
-      getUnvotedPolls: function () {
+      //returns an array of all polls user hasn't voted on
+      getUnvotedPolls: () => {
         var pollsArray = [];
-        $http.get('api/polls').success(function(resp){
+        $http.get('api/polls').success(resp => {
             resp.forEach(function(value){
                if(value.voted.indexOf(Auth.getCurrentUser().name)  === -1){
                    pollsArray.push(value);
@@ -22,7 +22,7 @@ angular.module('voteTimeApp')
           return pollsArray;
       },
       //returns an array of config objects for the highchart directive
-      getChartObjects: function(){
+      getChartObjects:  () => {
         var chartArray = [];
         $http.get('api/polls').success(function(resp){
           resp.forEach(function(value){
@@ -52,6 +52,15 @@ angular.module('voteTimeApp')
           });
         });
             return chartArray;
+      },
+      //returns an array of every poll this user has
+      getAllUsersPolls: () => {
+         var pollArray = [];
+           return $http.get('api/polls/all/' + Auth.getCurrentUser().name).success(function(response){
+            pollArray = response;
+            console.log(pollArray);
+         });
+
       }
 
    };

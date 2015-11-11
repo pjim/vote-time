@@ -6,25 +6,36 @@ angular.module('voteTimeApp')
 
       $scope.thisUsersPolls = pollGetter.getUnvotedPolls();
 
+
+
+      $scope.fullUsersPolls = $http.get('api/polls/all/' + Auth.getCurrentUser().name).success(response => {
+           $scope.fullUsersPolls = response;
+      });
+
+      console.log($scope.fullUsersPolls);
+
       $scope.newPoll = false;
 
-      $scope.showPollForm = function(){
+      $scope.viewPoll = false;
+
+
+      $scope.showPollForm = () => {
 
         if($scope.newPoll === false){$scope.newPoll = true;}
         else{$scope.newPoll = false;}
       };
 
-      $scope.viewPoll = false;
 
-      $scope.showUsersPolls = function(){
+
+      $scope.showUsersPolls = () => {
         if($scope.viewPoll === false){$scope.viewPoll= true;}
         else{$scope.viewPoll = false;}
       };
 
       //send the poll form to the server for saving
-      $scope.addPoll = function(){
+      $scope.addPoll = () => {
            var optionSendArray = [];
-           $scope.options.forEach(function(option){
+           $scope.options.forEach(option => {
                 optionSendArray.push({optionName:option.opt,votes:0});
            });
            console.log(optionSendArray);
@@ -35,14 +46,14 @@ angular.module('voteTimeApp')
 
 
      //add option boxes to the poll entry page
-      $scope.addOption = function(event){
+      $scope.addOption = event => {
         event.preventDefault();
         var optNum = $scope.options.length +1;
         $scope.options.push({opt:'option' + optNum});
       };
 
     //delete option boxes
-      $scope.removeOption = function(event){
+      $scope.removeOption = event => {
         event.preventDefault();
         if($scope.options.length > 2){
           $scope.options.pop();
@@ -55,4 +66,7 @@ angular.module('voteTimeApp')
             {opt:'option1'},
             {opt:'option2'},
           ];
+
+      $scope.deletePoll = poll => console.log(poll);
+
   });

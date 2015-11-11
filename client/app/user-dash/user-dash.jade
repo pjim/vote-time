@@ -18,10 +18,18 @@ div(ng-include='"components/navbar/navbar.html"')
             button(class="btn" ng-click="removeOption($event)") Remove an option
 
 
-           button(ng-click="test()") test
 
        .view-polls(ng-show="viewPoll")
           p this is the view polls section
           h1 polls go here
           div(ng-repeat="poll in thisUsersPolls")
             voter(poll="poll")
+
+    button(class="btn") Delete Polls
+  .row
+   .col-md-12
+      .delete-section
+           p here you can delete existing polls
+           div(ng-repeat="poll in fullUsersPolls")
+             p {{poll.question}}
+             button(ng-click="deletePoll(poll)") delete
