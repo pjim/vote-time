@@ -1,18 +1,13 @@
 'use strict';
 
 angular.module('voteTimeApp')
-  .controller('MainCtrl', function ($scope, $http,Auth) {
-    $scope.polls =  [];
+  .controller('MainCtrl', function ($scope, $http,Auth,pollGetter) {
+    $scope.polls = pollGetter.getUnvotedPolls();
+
    //chart data will contain all the polls with votes
     $scope.chartData = [];
      $http.get('api/polls').success(function(resp){
 
-       console.log(resp);
-       resp.forEach(function(value){
-        if(value.voted.indexOf(Auth.getCurrentUser().name)  === -1){
-            $scope.polls.push(value);
-        }
-      });
         resp.forEach(function(value){
           var voteCount = 0;
            value.options.forEach(function(val){

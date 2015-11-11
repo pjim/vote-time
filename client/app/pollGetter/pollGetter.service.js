@@ -5,11 +5,11 @@ angular.module('voteTimeApp')
     // Service logic
     // ...
 
-    var pollsArray = [];
 
     // Public API here
     return {
       getUnvotedPolls: function () {
+        var pollsArray = [];
         $http.get('api/polls').success(function(resp){
             resp.forEach(function(value){
                if(value.voted.indexOf(Auth.getCurrentUser().name)  === -1){

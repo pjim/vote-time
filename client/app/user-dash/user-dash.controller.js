@@ -3,15 +3,6 @@
 angular.module('voteTimeApp')
   .controller('UserDashCtrl', function ($scope,$http,Auth,pollGetter) {
 
-      // function getUsersPolls(){
-      //   $http.get('api/polls/all/' + Auth.getCurrentUser().name ).success(function(resp){
-      //       console.log(resp);
-      //       $scope.thisUsersPolls = resp;
-      //   });
-      // }
-      //
-      // getUsersPolls();
-      //
 
       $scope.thisUsersPolls = pollGetter.getUnvotedPolls();
 
@@ -42,10 +33,6 @@ angular.module('voteTimeApp')
          $http.post('api/polls/', {question:pollQuestion,options:optionSendArray,owner:userName});
       };
 
-      $scope.options = [
-        {opt:'option1'},
-        {opt:'option2'},
-      ];
 
      //add option boxes to the poll entry page
       $scope.addOption = function(event){
@@ -64,10 +51,6 @@ angular.module('voteTimeApp')
         }
       };
 
-      $scope.test = function(){
-          console.log($scope.options) ;
-          console.log($scope.thisUsersPolls);
-      };
 
 
   });
