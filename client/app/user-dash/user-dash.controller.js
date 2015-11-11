@@ -4,15 +4,18 @@ angular.module('voteTimeApp')
   .controller('UserDashCtrl', function ($scope,$http,Auth,pollGetter) {
 
 
-      $scope.thisUsersPolls = pollGetter.getUnvotedPolls();
+      function getUnvoted(){$scope.thisUsersPolls = pollGetter.getUnvotedPolls();}
 
+      getUnvoted();
 
+      function getAllpolls() {
+          $http.get('api/polls/all/' + Auth.getCurrentUser().name).success(response => {
+          $scope.fullUsersPolls = response;
+          });
+      }
 
-      $scope.fullUsersPolls = $http.get('api/polls/all/' + Auth.getCurrentUser().name).success(response => {
-           $scope.fullUsersPolls = response;
-      });
+      getAllpolls();
 
-      console.log($scope.fullUsersPolls);
 
       $scope.newPoll = false;
 
@@ -40,8 +43,17 @@ angular.module('voteTimeApp')
            });
            console.log(optionSendArray);
            var pollQuestion = $scope.pollQuestion;
-          var userName = Auth.getCurrentUser().name ;
-         $http.post('api/polls/', {question:pollQuestion,options:optionSendArray,owner:userName});
+           var userName = Auth.getCurrentUser().name ;
+          $http.post('api/polls/', {question:pollQuestion,options:optionSendArray,owner:userName});
+
+          getUnvoted();
+          getAllpolls();
+          $scope.pollQuestion = '';
+          $scope.options = [
+               {opt:'option1'},
+               {opt:'option2'},
+             ];
+
       };
 
 
@@ -70,6 +82,8 @@ angular.module('voteTimeApp')
       $scope.deletePoll = poll => {
         var pollId = poll._id;
         $http.delete(`api/polls/${pollId}`);
-      };
-
-  });
+        //remove from scope
+        getUnvoted();
+        getAllpolls();
+        };
+      });
