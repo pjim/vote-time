@@ -51,6 +51,8 @@ angular.module('voteTimeApp')
         }
       };
 
-
-
+      $scope.options = [
+            {opt:'option1'},
+            {opt:'option2'},
+          ];
   });
