@@ -30,4 +30,5 @@ angular.module('voteTimeApp')
      };
 
      $scope.isLoggedIn = Auth.isLoggedIn;
+     $scope.getCurrentUser = Auth.getCurrentUser;
   });

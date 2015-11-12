@@ -11,6 +11,11 @@ angular.module('voteTimeApp')
       'title':'My Home',
       'link':'/user-dash',
       'show':'isLoggedIn()'
+    },
+    {
+      'title':'Vote on Polls',
+      'link':'/vote',
+      'show':'isLoggedIn()'
     }
   ];
     $scope.isCollapsed = true;

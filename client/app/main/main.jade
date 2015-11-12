@@ -11,21 +11,20 @@ header#banner.hero-unit
        h2(class="second-header") Gather opinions Share opinions
 .container
   .row
-    .col-md-10.col-md-offset-2
+    .col-md-8.col-center
       h2.page-header(ng-hide="isLoggedIn") Login or Sign-up to vote and create your own polls
       h2.page-header(ng-show="isLoggedIn") Welcome  {{getCurrentUser().name}} you can vote on any active poll here
 
   .row
-    .surround
-      div(class="col-md-6 col-md-offset-2")
-        button(class="btn ", ng-click="showResults()") Hide Poll Results
-
-        div(ng-hide="seeResults" ng-repeat="data in chartData")
-          highchart(config="data")
+      div(class="col-md-8 col-center")
+       .surround
+          h2(class="text-center") The results of our latest polls
+          div(ng-hide="seeResults" ng-repeat="data in chartData")
+            highchart(config="data")
   .row
-    div(class="col-md-6 col-md-offset-2")
+    div(class="col-md-6 col-md-offset-2" ng-show="isLoggedIn")
       .surround
-        button(class="center-button btn text-center" ng-click="showPolls()") See our latest polls
+        h2(class="text-center") Share your opinion by voting here
         div(ng-repeat="poll in polls" ng-hide="seePolls")
           voter(poll="poll")
 footer.footer
