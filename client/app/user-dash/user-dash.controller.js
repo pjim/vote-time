@@ -57,7 +57,8 @@ angular.module('voteTimeApp')
 
       };
 
-
+     //pull the charts for this user only
+     
      //add option boxes to the poll entry page
       $scope.addOption = event => {
         event.preventDefault();

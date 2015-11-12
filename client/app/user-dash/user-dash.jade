@@ -20,13 +20,11 @@ div(ng-include='"components/navbar/navbar.html"')
 
      .col-md-6
        button(ng-click='showUsersPolls()') View Polls
-         .view-polls(ng-show="viewPoll")
-            p this is the view polls section
-            h1 polls go here
-            div(ng-repeat="poll in thisUsersPolls")
-              voter(poll="poll")
+       .view-polls(ng-show="viewPoll")
+          div(ng-repeat="poll in thisUsersPolls")
+            voter(poll="poll")
 
-  .row
+  .row.top-buffer
    .col-md-12
 
     button(class="btn") Delete Polls
@@ -34,4 +32,4 @@ div(ng-include='"components/navbar/navbar.html"')
            p here you can delete existing polls
            div(ng-repeat="poll in fullUsersPolls")
              p {{poll.question}}
-             button(ng-click="deletePoll(poll)") delete
+              button(ng-click="deletePoll(poll)") delete
