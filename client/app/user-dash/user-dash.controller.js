@@ -4,19 +4,20 @@ angular.module('voteTimeApp')
   .controller('UserDashCtrl', function ($scope,$http,Auth,pollGetter) {
 
 
-      function getUnvoted(){$scope.thisUsersPolls = pollGetter.getUnvotedPolls();}
+      $scope.getUnvoted = () => {$scope.thisUsersPolls = pollGetter.getUnvotedPolls();};
 
-      getUnvoted();
 
-      function getAllpolls() {
+      $scope.getUnvoted();
+
+      $scope.getAllPolls = () => {
           $http.get('api/polls/all/' + Auth.getCurrentUser().name).success(response => {
           $scope.fullUsersPolls = response;
           });
-      }
+      };
 
-      getAllpolls();
+      $scope.getAllPolls();
 
-
+//when you vote it's not dissapearing from the list
       $scope.newPoll = false;
 
       $scope.viewPoll = false;
@@ -46,8 +47,8 @@ angular.module('voteTimeApp')
            var userName = Auth.getCurrentUser().name ;
           $http.post('api/polls/', {question:pollQuestion,options:optionSendArray,owner:userName});
 
-          getUnvoted();
-          getAllpolls();
+          $scope.getUnvoted();
+          $scope.getAllPolls();
           $scope.pollQuestion = '';
           $scope.options = [
                {opt:'option1'},
@@ -83,7 +84,7 @@ angular.module('voteTimeApp')
         var pollId = poll._id;
         $http.delete(`api/polls/${pollId}`);
         //remove from scope
-        getUnvoted();
-        getAllpolls();
+        $scope.getUnvoted();
+        $scope.getAllPolls();
         };
       });

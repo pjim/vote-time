@@ -2,12 +2,17 @@ div(ng-include='"components/navbar/navbar.html"')
 
 header#banner.hero-unit
   .container
-    h1 Vote Time
-
+    .row
+     .col-md-4
+       h1(class=".text-left") Vote Time
+       h2
+        span(class="glyphicon glyphicon-ok")
+     .col-md-4(class="col-md-offset-2 ")
+       h2(class="second-header") Gather opinions Share opinions
 .container
   .row
-    .col-lg-12
-      h1.page-header Features: A blurb will be here later
+    .col-md-10.col-md-offset-2
+      h2.page-header Login or Sign-up to vote and create your own polls
   .row
     .col-md-12
       h2 Polls will appear here for non registered users to vote on

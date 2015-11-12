@@ -8,7 +8,7 @@ angular.module('voteTimeApp')
       'show':'true'
     },
     {
-      'title':'User Dash',
+      'title':'My Home',
       'link':'/user-dash',
       'show':'isLoggedIn()'
     }

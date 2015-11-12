@@ -19,25 +19,11 @@ angular.module('voteTimeApp')
                   optionName:$scope.vote.selectedOption,
                   votingUser:Auth.getCurrentUser().name}
                 );
-                //checkUserVoted();
             }
+            //call the parent scope to remove any now voted polls
+            $scope.$parent.getUnvoted();
+            $scope.$parent.getAllPolls();
          };
-          // function checkUserVoted(){
-          //    var userName = Auth.getCurrentUser().name;
-          //     console.log(userName);
-          //     var currentPoll;
-          //     console.log($scope.poll._id);
-          //     $http.get('api/polls/' + $scope.poll._id).then(function(response){
-          //       currentPoll = response;
-          //     });
-          //     currentPoll.voted.forEach(function(value){
-          //         if(value === userName){$scope.thisUserCanVote = false;}
-          //     });
-          // }
-          // $timeout(checkUserVoted,100);
-          //must check if user has voted on this poll if so ng-hide the poll and display the result
-          // so if has voted show chart
-          //must show the result as a chart after vote is cast
 
       },
       link: function (scope, element, attrs) {
