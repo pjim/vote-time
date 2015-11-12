@@ -1,2 +1,11 @@
-.col-md-12
-    | This is the vote view.
+div(ng-include='"components/navbar/navbar.html"')
+
+
+.container
+  .row
+    .col-md-6.col-md-offset-3
+      h2 Vote on our latest polls here
+  .row
+    .col-md-6.col-md-offset-2
+        div(ng-repeat="poll in polls")
+          voter(poll="poll")

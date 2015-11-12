@@ -1,11 +1,12 @@
 div(ng-include='"components/navbar/navbar.html"')
 .container
-  .col-md-12
-   p Welcome to your dashboard
-     button(ng-click='showPollForm()') New Poll
-
-     button(ng-click='showUsersPolls()') View Polls
-
+  .row
+    .col-md-6.col-md-offset-3
+       h2 Welcome to your dashboard
+       p    Here you can add new polls and see your existing polls
+  .row
+     .col-md-6
+        button(ng-click='showPollForm()') New Poll
         .add-poll(ng-show="newPoll")
           form(ng-submit="addPoll($event)" class="form")
             label Poll Question
@@ -17,18 +18,19 @@ div(ng-include='"components/navbar/navbar.html"')
 
             button(class="btn" ng-click="removeOption($event)") Remove an option
 
+     .col-md-6
+       button(ng-click='showUsersPolls()') View Polls
+         .view-polls(ng-show="viewPoll")
+            p this is the view polls section
+            h1 polls go here
+            div(ng-repeat="poll in thisUsersPolls")
+              voter(poll="poll")
 
-
-       .view-polls(ng-show="viewPoll")
-          p this is the view polls section
-          h1 polls go here
-          div(ng-repeat="poll in thisUsersPolls")
-            voter(poll="poll")
-
-    button(class="btn") Delete Polls
   .row
    .col-md-12
-      .delete-section
+
+    button(class="btn") Delete Polls
+    .delete-section
            p here you can delete existing polls
            div(ng-repeat="poll in fullUsersPolls")
              p {{poll.question}}

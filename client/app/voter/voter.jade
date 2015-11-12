@@ -3,7 +3,7 @@ div
 
   div(class="list-group")
     form
-       label(ng-repeat="option in poll.options" for="{{option.optionName}}" class="list-group-item") {{option.optionName}}
+       label(ng-repeat="option in poll.options" for="{{option.optionName}}" class="list-group-item") {{option.optionName}} 
          input(type="radio" id="{{option.optionName}}"  ng-model="vote.selectedOption" ng-value="option.optionName" name="option")
 
   button(class="btn" ng-click="sendOption()") Send Vote

@@ -61,6 +61,21 @@ angular.module('voteTimeApp')
             console.log(pollArray);
          });
 
+
+      },
+      //returns an array of every poll this user has that they haven't voted on
+
+      getUsersUnvotedPolls() {
+          var unfilteredArray = this.getunvotedpolls();
+
+          var resultArray = unfilteredArray.filter(value => {
+                if(value.owner === Auth.getCurrentUser().name){
+                  return true;
+                }else{
+                  return false;
+                }
+           return resultArray;
+          });
       }
 
    };
