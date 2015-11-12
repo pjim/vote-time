@@ -10,7 +10,7 @@ angular.module('voteTimeApp')
     {
       'title':'User Dash',
       'link':'/user-dash',
-      'show':'isLoggedIn'
+      'show':'isLoggedIn()'
     }
   ];
     $scope.isCollapsed = true;
