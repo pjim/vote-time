@@ -12,21 +12,21 @@ header#banner.hero-unit
 .container
   .row
     .col-md-10.col-md-offset-2
-      h2.page-header Login or Sign-up to vote and create your own polls
-  .row
-    .col-md-12
-      h2 Polls will appear here for non registered users to vote on
-      h2 when they have voted the poll will change to a chart
-  .row
-    div(class="col-md-6 col-md-offset-4")
-      button(class="btn" ng-click="showPolls()") See our latest polls
-      div(ng-repeat="poll in polls" ng-show="seePolls")
-        voter(poll="poll")
-  .row
-    div(class="col-md-6 col-md-offset-4")
-      button(class="btn", ng-click="showResults()") Show Poll Results
+      h2.page-header(ng-hide="isLoggedIn") Login or Sign-up to vote and create your own polls
+      h2.page-header(ng-show="isLoggedIn") Welcome  {{getCurrentUser().name}} you can vote on any active poll here
 
-      div(ng-show="seeResults" ng-repeat="data in chartData")
-        highchart(config="data")
+  .row
+    .surround
+      div(class="col-md-6 col-md-offset-2")
+        button(class="btn ", ng-click="showResults()") Hide Poll Results
+
+        div(ng-hide="seeResults" ng-repeat="data in chartData")
+          highchart(config="data")
+  .row
+    div(class="col-md-6 col-md-offset-2")
+      .surround
+        button(class="center-button btn text-center" ng-click="showPolls()") See our latest polls
+        div(ng-repeat="poll in polls" ng-hide="seePolls")
+          voter(poll="poll")
 footer.footer
   .container
